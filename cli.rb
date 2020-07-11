@@ -1,5 +1,11 @@
 #!/usr/bin/env ruby
 require 'optparse'
+require 'json'
+
+file = File.read("products.json")
+#data stores the products objects
+data = JSON.load file
+
 
 products = {}
 OptionParser.new do |prod|
