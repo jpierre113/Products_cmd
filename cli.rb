@@ -20,7 +20,7 @@ getStyle = firstFilter.map{|style| style['options']['style']}.compact.uniq
 if getGender == true || getColor == true || getSize == true
     print "gender: #{getGender} color: #{getColor}  size: #{getSize}"
 elsif getType == true
-  print "type: #{getType}"
+    print "type: #{getType}"
 else
-  print "size: #{getSize} style: #{getStyle}"
+    print "size: #{getSize} style: #{getStyle}"
 end
