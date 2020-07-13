@@ -8,7 +8,8 @@ data = JSON.load file
 choice = gets.chomp
 
 firstFilter = data.select{|product| product['product_type'] == choice}
+#accessing options hash
 firstFilter.each do |type|
-    firstFilter = type['options'] && type['options']['gender']
+    firstFilter = type['options']
 end
 puts firstFilter
