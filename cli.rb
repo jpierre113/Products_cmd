@@ -17,10 +17,12 @@ getType = firstFilter.map{|type| type['options']['type']}.compact.uniq
 getStyle = firstFilter.map{|style| style['options']['style']}.compact.uniq
 
 #based on filter display output
-if getGender == true || getColor == true || getSize == true
+if choice == "tshirt"
     print "gender: #{getGender} color: #{getColor}  size: #{getSize}"
-elsif getType == true
+elsif choice == "mug"
     print "type: #{getType}"
-else
+elsif choice == "sticker"
     print "size: #{getSize} style: #{getStyle}"
+else
+    print "Invalid product"
 end
