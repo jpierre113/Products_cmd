@@ -5,9 +5,10 @@ file = File.read("products.json")
 #data stores the products objects
 data = JSON.load file
 
-choice = gets.chomp
+opt1, opt2 = gets.chomp.split(' ')
 
-firstFilter = data.select{|product| product['product_type'] == choice}
+#select the product based on the value if the class matches return array
+firstFilter = data.select{|product| product.values.map{|value| value.class == hash ? value.values : value}.flatten && opt1 || opt2}
 
 #accessing options hash
 getGender = firstFilter.map{|gender| gender['options']['gender']}.compact.uniq
@@ -17,12 +18,15 @@ getType = firstFilter.map{|type| type['options']['type']}.compact.uniq
 getStyle = firstFilter.map{|style| style['options']['style']}.compact.uniq
 
 #based on filter display output
-if choice == "tshirt"
-    print "gender: #{getGender} color: #{getColor}  size: #{getSize}"
-elsif choice == "mug"
-    print "type: #{getType}"
-elsif choice == "sticker"
-    print "size: #{getSize} style: #{getStyle}"
+case
+    when opt1 == "tshirt" && opt2 == ""
+        print "gender: #{getGender} color: #{getColor}  size: #{getSize}"
+    when opt1 == "tshirt" && (opt2 == "male" || opt2 == "female")
+        print "color: #{getColor} size: #{getSize}"
+    when opt1 == "mug" && opt2 == ""
+        print "type: #{getType}"
+    when opt1 == "sticker" && opt2 == ""
+        print "size: #{getSize} style: #{getStyle}"
 else
     print "Invalid product"
 end
