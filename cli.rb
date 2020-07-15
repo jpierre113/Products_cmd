@@ -19,13 +19,13 @@ getStyle = firstFilter.map{|style| style['options']['style']}.compact.uniq
 
 #based on filter display output
 case
-    when opt1 == "tshirt" && opt2 == ""
+    when opt1 == "tshirt" && opt2 == nil
         print "gender: #{getGender} color: #{getColor}  size: #{getSize}"
     when opt1 == "tshirt" && (opt2 == "male" || opt2 == "female")
         print "color: #{getColor} size: #{getSize}"
-    when opt1 == "mug" && opt2 == ""
+    when opt1 == "mug" && opt2 == nil
         print "type: #{getType}"
-    when opt1 == "sticker" && opt2 == ""
+    when opt1 == "sticker" && opt2 == nil
         print "size: #{getSize} style: #{getStyle}"
 else
     print "Invalid product"
