@@ -9,9 +9,9 @@ choice = gets.chomp.split(' ')
 
 data.each do |product|
     #looping through product, searching through the values if class is the same as the hash assign value. Make it 1 demensional array
-    if product.values.map{|value| value.class == Hash ? value.values : value}.flatten & choice
+    if (product.values.map{|value| value.class == Hash ? value.values : value}.flatten & choice).length > 0
+        #iterate through array of hashes, placeholder for value here will find matching value to hash
         product.each do |key, value|
-            #iterate through array of hashes, placeholder for value here will find matching value to hash
             if key != "id"
                 puts ""
                     if value.class == Hash
