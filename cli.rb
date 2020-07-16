@@ -12,14 +12,17 @@ data.each do |product|
     if product.values.map{|value| value.class == Hash ? value.values : value}.flatten & choice
         product.each do |key, value|
             #iterate through array of hashes, placeholder for value here will find matching value to hash
-            if value.class == Hash
-                value.each do |key2, value2|
-                    #exclude printing values that are inputted 
-                    puts "#{key2} #{value2}" if !choice.include?(value2)
-                end
-            else
-                puts "#{key} #{value}" if !choice.include?(value)
+            if key != "id"
+                puts ""
+                    if value.class == Hash
+                        value.each do |key2, value2|
+                            #exclude printing values that are inputted
+                            puts "#{key2} #{value2}" if !choice.include?(value2)
+                    end
+                    else
+                        puts "#{key} #{value}" if !choice.include?(value)
+                    end
             end
-       end
+        end
     end
 end
