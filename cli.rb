@@ -18,7 +18,7 @@ data.each do |product|
                         value.each do |key2, value2|
                             #exclude printing values that are inputted
                             puts "#{key2} #{value2}" if !choice.include?(value2)
-                    end
+                        end
                     else
                         puts "#{key} #{value}" if !choice.include?(value)
                     end
