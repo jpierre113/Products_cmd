@@ -5,28 +5,21 @@ file = File.read("products.json")
 #data stores the products objects
 data = JSON.load file
 
-opt1, opt2 = gets.chomp.split(' ')
+choice = gets.chomp.split(' ')
 
-#select the product based on the value if the class matches return array
-firstFilter = data.select{|product| product.values.map{|value| value.class == hash ? value.values : value}.flatten && opt1 || opt2}
-
-#accessing options hash
-getGender = firstFilter.map{|gender| gender['options']['gender']}.compact.uniq
-getColor = firstFilter.map{|color| color['options']['color']}.compact.uniq
-getSize = firstFilter.map{|size| size['options']['size']}.compact.uniq
-getType = firstFilter.map{|type| type['options']['type']}.compact.uniq
-getStyle = firstFilter.map{|style| style['options']['style']}.compact.uniq
-
-#based on filter display output
-case
-    when opt1 == "tshirt" && opt2 == nil
-        print "gender: #{getGender} color: #{getColor}  size: #{getSize}"
-    when opt1 == "tshirt" && (opt2 == "male" || opt2 == "female")
-        print "color: #{getColor} size: #{getSize}"
-    when opt1 == "mug" && opt2 == nil
-        print "type: #{getType}"
-    when opt1 == "sticker" && opt2 == nil
-        print "size: #{getSize} style: #{getStyle}"
-else
-    print "Invalid product"
+data.each do |product|
+    #looping through product, searching through the values if class is the same as the hash assign value. Make it 1 demensional array
+    if product.values.map{|value| value.class == Hash ? value.values : value}.flatten & choice
+        product.each do |key, value|
+            #iterate through array of hashes, placeholder for value here will find matching value to hash
+            if value.class == Hash
+                value.each do |key2, value2|
+                    #exclude printing values that are inputted 
+                    puts "#{key2} #{value2}" if !choice.include?(value2)
+                end
+            else
+                puts "#{key} #{value}" if !choice.include?(value)
+            end
+       end
+    end
 end
