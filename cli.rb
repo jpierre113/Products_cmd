@@ -14,11 +14,11 @@ data.each do |product|
         product.each do |key, value|
             if key != "id"
                 if value.class == Hash
-                    value.each do |key2, value2|
+                    value.each do |options_key, options_value|
                         # exclude printing values that are inputted
-                        puts "#{key2} #{value2}" if !choice.include?(value2)
+                        puts "#{options_key} #{options_value}" if !choice.include?(options_value)
                     end
-                    else
+                else
                         puts "#{key} #{value}" if !choice.include?(value)
                 end
             end
