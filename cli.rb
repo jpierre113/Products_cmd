@@ -22,10 +22,10 @@ data.each do |product|
                 if value.class == Hash
                     value.each do |options_key, options_value|
                         # exclude printing values that are inputted
-                        puts "#{options_key} #{options_value}" if !choice.include?(options_value)
+                        filter_response(options_key, options_value, choice, response)
                     end
                 else
-                        puts "#{key} #{value}" if !choice.include?(value)
+                    filter_response(key, value, choice, response)
                 end
             end
         end
