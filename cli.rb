@@ -7,6 +7,12 @@ data = JSON.load file
 
 choice = gets.chomp.split(' ')
 
+response = []
+# matching responses are listed in array
+def filter_response(key, value, choice, response)
+    response << {key => value} if !choice.include?(value)
+end
+
 data.each do |product|
     # looping through the products converting it to a flattened 1 dimentional array of values, and compare those values with the input, printing the output if they match
     if (product.values.map{|value| value.class == Hash ? value.values : value}.flatten & choice).length == choice.length
@@ -25,3 +31,7 @@ data.each do |product|
         end
     end
 end
+# unique response will be outputted
+response.uniq.flat_map(&:entries)
+  .group_by(&:first)
+  .map{|key, value| puts "#{key}: #{value.map(&:last).join(' ')}" }
